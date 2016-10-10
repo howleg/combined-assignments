@@ -27,6 +27,7 @@
       <module>3-collections</module>
       <module>4-file-io-serialization</module>
       <module>5-socket-io-serialization</module>
+        <module>6-concurrency</module>
     </modules>
 
     <build>
