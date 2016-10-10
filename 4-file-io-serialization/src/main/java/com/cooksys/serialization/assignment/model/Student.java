@@ -1,13 +1,21 @@
 package com.cooksys.serialization.assignment.model;
 
 public class Student {
-    private Contact contact;
+	private Contact contact;
 
-    public Contact getContact() {
-        return contact;
-    }
+	public Student() {
+		// this.contact = null;
+	}
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
+	public Student(Contact contact) {
+		this.contact = contact;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
+	}
 }
