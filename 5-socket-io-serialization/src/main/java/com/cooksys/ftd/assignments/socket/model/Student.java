@@ -62,12 +62,11 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", favoriteIDE='" + favoriteIDE + '\'' +
-                ", favoriteLanguage='" + favoriteLanguage + '\'' +
-                ", favoriteParadigm='" + favoriteParadigm + '\'' +
-                '}';
+        return "Student{\n" +
+                "	firstName='" + firstName + "' \n" +
+                "	lastName='" + lastName + "' \n" +
+                "	favoriteIDE='" + favoriteIDE + "' \n" +
+                "	favoriteLanguage='" + favoriteLanguage + "' \n" +
+                "	favoriteParadigm='" + favoriteParadigm + "' \n	}";
     }
 }

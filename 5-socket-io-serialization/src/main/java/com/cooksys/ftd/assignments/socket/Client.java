@@ -12,7 +12,7 @@ import javax.xml.bind.Unmarshaller;
 import com.cooksys.ftd.assignments.socket.model.Config;
 import com.cooksys.ftd.assignments.socket.model.Student;
 
-public class Client {
+public class Client implements Runnable {
 
 	/**
 	 * The client should load a
@@ -32,7 +32,8 @@ public class Client {
 	 * @throws IOException
 	 * @throws UnknownHostException
 	 */
-	public static void main(String[] args) {
+	@Override
+	public void run() {
 
 		try {
 			// creates a JaxBContext and an unMarshaller from that jaxb
@@ -50,7 +51,7 @@ public class Client {
 
 			Student student = (Student) unmarshaller.unmarshal(socket.getInputStream());
 
-			System.out.println(student.toString());
+			System.out.println("CLIENT: " + student.toString());
 
 			socket.close();
 		} catch (Exception e) {
@@ -58,4 +59,5 @@ public class Client {
 		}
 
 	}
+
 }

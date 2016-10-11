@@ -13,7 +13,7 @@ import javax.xml.bind.Unmarshaller;
 import com.cooksys.ftd.assignments.socket.model.Config;
 import com.cooksys.ftd.assignments.socket.model.Student;
 
-public class Server extends Utils {
+public class Server implements Runnable {
 
 	/**
 	 * Reads a {@link Student} object from the given file path
@@ -56,7 +56,8 @@ public class Server extends Utils {
 	 * @throws JAXBException
 	 * @throws IOException
 	 */
-	public static void main(String[] args) {
+	@Override
+	public void run() {
 
 		try {
 			JAXBContext jaxb = JAXBContext.newInstance(Config.class, Student.class);
@@ -68,7 +69,7 @@ public class Server extends Utils {
 
 			//////////////////////////////////////////////////////////
 			ServerSocket ss = new ServerSocket(port);
-			System.out.println("listening on port# " + port + "...");
+			System.out.println("SERVER: listening on port# " + port + "...");
 			Socket clientSocket = ss.accept();
 			/////////////////////////////////////////////////////////
 
@@ -77,7 +78,7 @@ public class Server extends Utils {
 			Marshaller marshaller = jaxb.createMarshaller();
 
 			marshaller.marshal(student, clientSocket.getOutputStream());
-			System.out.println("successfully sent Student");
+			System.out.println("SERVER: successfully sent Student");
 			// closing stuff
 			clientSocket.close();
 			ss.close();
