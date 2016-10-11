@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<student firstName="Jim" lastName="Bob">
+    <favorite-ide>VisualStudio</favorite-ide>
+    <favorite-language>C#</favorite-language>
+    <favorite-paradigm>F It!</favorite-paradigm>
+</student>
