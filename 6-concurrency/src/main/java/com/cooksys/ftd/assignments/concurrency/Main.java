@@ -1,10 +1,10 @@
 package com.cooksys.ftd.assignments.concurrency;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 import com.cooksys.ftd.assignments.concurrency.model.config.ClientConfig;
 import com.cooksys.ftd.assignments.concurrency.model.config.Config;
@@ -28,14 +28,13 @@ public class Main {
 	 * config and spin off a thread to run it.
 	 * 
 	 * @throws JAXBException
+	 * @throws IOException
 	 */
-	public static void main(String[] args) throws JAXBException {
+	public static void main(String[] args) throws JAXBException, IOException {
 
-		File configFile = new File("config/config.xml");
-		JAXBContext jaxb = JAXBContext.newInstance(Config.class);
-		Unmarshaller unmarshaler = jaxb.createUnmarshaller();
+		Path configPath = new File("config/config.xml").toPath();
 
-		Config config = (Config) unmarshaler.unmarshal(configFile);
+		Config config = Config.load(configPath);
 
 		ServerConfig serverConfig = config.getServer();
 		ClientConfig clientConfig = config.getClient();
@@ -43,11 +42,15 @@ public class Main {
 		if (!serverConfig.isDisabled()) {
 			Server server = new Server(serverConfig);
 			// spin off a thread to run it.
+			Thread serverThread = new Thread(server);
+			serverThread.start();
 		}
 
 		if (!clientConfig.isDisabled()) {
 			Client client = new Client(clientConfig);
 			// spin off a thread to run it.
+			Thread clientThread = new Thread(client);
+			clientThread.start();
 		}
 
 	}
